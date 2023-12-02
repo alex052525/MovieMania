@@ -1,8 +1,8 @@
 package com.tuk.moviemaker.movie.entity;
 
 import com.tuk.moviemaker.member.entity.Member;
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "Title")
     private String title;
@@ -37,23 +37,25 @@ public class Movie {
     private Member member;
 
     @Column(name = "Release_Date")
-    private Date releaseDate;
+    private LocalDate releaseDate;
 
     @Column(name = "End_Date")
-    private Date endDate;
+    private LocalDate endDate;
 
     @Column(name = "Showing")
     private boolean showing;
 
-    @Column(name = "Registration_Date", insertable = false, updatable = false)
+    @Column(name = "Registration_Date", updatable = false)
     private Timestamp registrationDate;
 
-    public Movie(String title, Genre genre, Member member, Date releaseDate, Date endDate, boolean showing) {
+    public Movie(String title, Genre genre, Member member, LocalDate releaseDate, LocalDate endDate,
+        boolean showing, Timestamp registrationDate) {
         this.title = title;
         this.genre = genre;
         this.member = member;
         this.releaseDate = releaseDate;
         this.endDate = endDate;
         this.showing = showing;
+        this.registrationDate = registrationDate;
     }
 }
