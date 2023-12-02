@@ -4,6 +4,7 @@ import com.tuk.moviemaker.member.dao.MemberDao;
 import com.tuk.moviemaker.member.entity.Member;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +27,7 @@ public class MemberServlet extends HttpServlet {
         memberDao = new MemberDao(em);
     }
 
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         // 요청으로부터 사용자 정보를 받습니다.
@@ -39,7 +41,11 @@ public class MemberServlet extends HttpServlet {
         // MemberDao를 사용하여 데이터베이스에 저장합니다.
         memberDao.save(member);
 
-        // 처리 결과를 클라이언트에게 응답합니다.
-        response.getWriter().print("Member created with ID: " + member.getId());
+        // Set the registration message as a request attribute
+        request.setAttribute("registrationMessage", "회원 가입이 완료되었습니다. ID: " + member.getId());
+
+        // Forward the request to the signup.jsp page
+        RequestDispatcher dispatcher = request.getRequestDispatcher("join/signup.jsp");
+        dispatcher.forward(request, response);
     }
 }
