@@ -21,7 +21,8 @@ public class MainServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        EntityManagerFactory emf = (EntityManagerFactory) config.getServletContext().getAttribute("emf");
+        EntityManagerFactory emf = (EntityManagerFactory) config.getServletContext()
+            .getAttribute("emf");
         EntityManager em = emf.createEntityManager();
         movieDao = new MovieDao(em);
     }
@@ -40,7 +41,6 @@ public class MainServlet extends HttpServlet {
 
         List<Movie> movies = movieDao.findMoviesWithPagination(page, pageSize);
 
-
         long totalMovies = movieDao.countMovies();
         int totalPages = (int) Math.ceil((double) totalMovies / pageSize);
 
@@ -48,6 +48,6 @@ public class MainServlet extends HttpServlet {
         request.setAttribute("currentPage", page);
         request.setAttribute("totalPages", totalPages);
 
-        request.getRequestDispatcher("/main/mainPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/mainPage.jsp").forward(request, response);
     }
 }

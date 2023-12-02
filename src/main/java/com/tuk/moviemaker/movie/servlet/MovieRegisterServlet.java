@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/register")
-public class MovieServlet extends HttpServlet {
+public class MovieRegisterServlet extends HttpServlet {
 
     private MovieDao movieDao;
     private MemberDao memberDao;
