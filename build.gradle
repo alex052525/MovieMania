@@ -26,6 +26,11 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    implementation 'mysql:mysql-connector-java:8.0.19'
+    implementation 'org.hibernate:hibernate-entitymanager:5.4.30.Final'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 }
 
 test {
