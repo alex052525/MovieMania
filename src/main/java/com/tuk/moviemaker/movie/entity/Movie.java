@@ -1,7 +1,6 @@
 package com.tuk.moviemaker.movie.entity;
 
 import com.tuk.moviemaker.member.entity.Member;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class Movie {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -46,10 +46,10 @@ public class Movie {
     private boolean showing;
 
     @Column(name = "Registration_Date", updatable = false)
-    private Timestamp registrationDate;
+    private LocalDate registrationDate;
 
     public Movie(String title, Genre genre, Member member, LocalDate releaseDate, LocalDate endDate,
-        boolean showing, Timestamp registrationDate) {
+        boolean showing, LocalDate registrationDate) {
         this.title = title;
         this.genre = genre;
         this.member = member;
